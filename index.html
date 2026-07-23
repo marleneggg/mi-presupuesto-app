@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Presupuesto Mensual</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Mi Presupuesto del Mes</h1>
+        <p>Edita los conceptos, captura tus montos y mira tu balance al instante.</p>
+
+        <!-- Tarjetas de Resumen -->
+        <div class="resumen">
+            <div class="card ingresos">
+                <h3>Ingresos Totales</h3>
+                <p id="total-ingresos">$0.00</p>
+            </div>
+            <div class="card gastos">
+                <h3>Gastos Totales</h3>
+                <p id="total-gastos">$0.00</p>
+            </div>
+            <div class="card balance">
+                <h3>Balance del Mes</h3>
+                <p id="balance-total">$0.00</p>
+            </div>
+        </div>
+
+        <!-- Formulario de Entradas -->
+        <div class="seccion">
+            <h2>Ingresos</h2>
+            <label>Sueldo / Nómina:</label>
+            <input type="number" class="input-ingreso" placeholder="0" oninput="calcular()">
+            
+            <label>Otros Ingresos:</label>
+            <input type="number" class="input-ingreso" placeholder="0" oninput="calcular()">
+        </div>
+
+        <div class="seccion">
+            <h2>Gastos</h2>
+            <label>Renta / Hipoteca:</label>
+            <input type="number" class="input-gasto" placeholder="0" oninput="calcular()">
+            
+            <label>Servicios (Luz, Internet, etc.):</label>
+            <input type="number" class="input-gasto" placeholder="0" oninput="calcular()">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
