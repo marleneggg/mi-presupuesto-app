@@ -3,48 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Presupuesto Mensual</title>
+    <title>Barbie Financiera - Presupuesto</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="header-barbie">
+        👑 BARBIE FINANCIERA · EDUCACIÓN FINANCIERA
+    </div>
+
     <div class="container">
-        <h1>Mi Presupuesto del Mes</h1>
-        <p>Edita los conceptos, captura tus montos y mira tu balance al instante.</p>
+        <h1>Mi presupuesto del mes</h1>
+        <p class="subtitle">Edita los conceptos, captura tus montos y mira tu balance al instante. Tu dinero, tu poder.</p>
 
-        <!-- Tarjetas de Resumen -->
-        <div class="resumen">
-            <div class="card ingresos">
-                <h3>Ingresos Totales</h3>
-                <p id="total-ingresos">$0.00</p>
+        <!-- DASHBOARD RESUMEN -->
+        <div class="dashboard">
+            <div class="dash-card ingresos-card">
+                <span class="dash-label">INGRESOS TOTALES</span>
+                <div class="dash-val" id="total-ingresos">$0</div>
             </div>
-            <div class="card gastos">
-                <h3>Gastos Totales</h3>
-                <p id="total-gastos">$0.00</p>
+            <div class="dash-card gastos-card">
+                <span class="dash-label">GASTOS TOTALES</span>
+                <div class="dash-val" id="total-gastos">$0</div>
             </div>
-            <div class="card balance">
-                <h3>Balance del Mes</h3>
-                <p id="balance-total">$0.00</p>
+            <div class="dash-card balance-card">
+                <span class="dash-label">BALANCE DEL MES</span>
+                <div class="dash-val" id="total-balance">$0</div>
+                <div class="status-tag" id="status-tag">✓ Balance al día</div>
             </div>
         </div>
 
-        <!-- Formulario de Entradas -->
-        <div class="seccion">
-            <h2>Ingresos</h2>
-            <label>Sueldo / Nómina:</label>
-            <input type="number" class="input-ingreso" placeholder="0" oninput="calcular()">
-            
-            <label>Otros Ingresos:</label>
-            <input type="number" class="input-ingreso" placeholder="0" oninput="calcular()">
-        </div>
+        <div class="grid-secciones">
+            <!-- SECCIÓN INGRESOS -->
+            <div class="categoria-box ingresos-box">
+                <h2>Ingresos</h2>
+                <div class="input-row">
+                    <label>Sueldo / Nómina</label>
+                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Bonos / Comisiones</label>
+                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Freelance / Honorarios</label>
+                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Negocio propio</label>
+                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Vales de despensa</label>
+                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Otros ingresos</label>
+                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="subtotal-bar">
+                    <span>Subtotal Ingresos</span>
+                    <strong id="subtotal-ingresos">$0</strong>
+                </div>
+            </div>
 
-        <div class="seccion">
-            <h2>Gastos</h2>
-            <label>Renta / Hipoteca:</label>
-            <input type="number" class="input-gasto" placeholder="0" oninput="calcular()">
-            
-            <label>Servicios (Luz, Internet, etc.):</label>
-            <input type="number" class="input-gasto" placeholder="0" oninput="calcular()">
+            <!-- SERVICIOS Y VIVIENDA -->
+            <div class="categoria-box">
+                <h2>Servicios y Vivienda</h2>
+                <div class="input-row">
+                    <label>Renta / Hipoteca</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Luz (CFE) / Agua / Gas</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Internet / Celular</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Mantenimiento / Reparaciones</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+            </div>
+
+            <!-- ALIMENTACIÓN Y TRANSPORTE -->
+            <div class="categoria-box">
+                <h2>Alimentación y Transporte</h2>
+                <div class="input-row">
+                    <label>Súper / Despensa</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Restaurantes / Café / Antojos</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Gasolina / Pasajes</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Uber / Taxi</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+            </div>
+
+            <!-- SALUD Y CUIDADO PERSONAL -->
+            <div class="categoria-box">
+                <h2>Salud y Cuidado Personal</h2>
+                <div class="input-row">
+                    <label>Psicólogo / Terapia / Médico</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Gimnasio / Deporte</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Estética / Uñas / Higiene</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Ropa y Calzado</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+            </div>
+
+            <!-- EDUCACIÓN Y MÁS -->
+            <div class="categoria-box">
+                <h2>Educación, Entretenimiento y Ahorro</h2>
+                <div class="input-row">
+                    <label>Colegiatura / Cursos</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Salidas / Cine / Viajes</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Mascotas (Alimento/Vet)</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+                <div class="input-row">
+                    <label>Ahorro / Inversión / Tandas</label>
+                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                </div>
+            </div>
         </div>
     </div>
 
