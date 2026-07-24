@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbie Financiera - Presupuesto</title>
+    <title>Barbie Financiera - Presupuesto Pro</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Librería para la gráfica de pastel -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <div class="header-barbie">
-        👑 BARBIE FINANCIERA · EDUCACIÓN FINANCIERA
+        👑 MARLENE GARCIA · PRESUPUESTO ORDENA TUS FINANZAS
     </div>
 
     <div class="container">
-        <h1>Mi presupuesto del mes</h1>
-        <p class="subtitle">Edita los conceptos, captura tus montos y mira tu balance al instante. Tu dinero, tu poder.</p>
+        <div class="top-controls">
+            <div>
+                <h1>Mi Presupuesto del Mes</h1>
+                <p class="subtitle">Edita los conceptos, captura tus montos y mira tu balance al instante. Tu dinero, tu poder.</p>
+            </div>
+            <div class="periodo-box">
+                <label>Periodo:</label>
+                <input type="month" id="select-mes" onchange="guardarDatos()">
+            </div>
+        </div>
 
         <!-- DASHBOARD RESUMEN -->
         <div class="dashboard">
@@ -33,123 +43,83 @@
             </div>
         </div>
 
+        <!-- SECCIÓN DE GRÁFICA -->
+        <div class="chart-section">
+            <h2>Distribución de tus Gastos</h2>
+            <div class="chart-container">
+                <canvas id="gastosChart"></canvas>
+            </div>
+        </div>
+
+        <div class="actions-bar">
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+            <button class="btn-action btn-danger" onclick="limpiarTodo()">🗑️ Borrar Todo</button>
+        </div>
+
+        <!-- GRID DE CATEGORÍAS -->
         <div class="grid-secciones">
-            <!-- SECCIÓN INGRESOS -->
+            
+            <!-- INGRESOS -->
             <div class="categoria-box ingresos-box">
                 <h2>Ingresos</h2>
-                <div class="input-row">
-                    <label>Sueldo / Nómina</label>
-                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
+                <div class="inputs-group" id="grupo-ingresos">
+                    <div class="input-row"><label>Sueldo / Nómina</label><input type="number" class="in-ingreso" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Bonos / Comisiones</label><input type="number" class="in-ingreso" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Freelance / Honorarios</label><input type="number" class="in-ingreso" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Negocio propio</label><input type="number" class="in-ingreso" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Vales de despensa</label><input type="number" class="in-ingreso" placeholder="0" oninput="calcular()"></div>
                 </div>
-                <div class="input-row">
-                    <label>Bonos / Comisiones</label>
-                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Freelance / Honorarios</label>
-                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Negocio propio</label>
-                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Vales de despensa</label>
-                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Otros ingresos</label>
-                    <input type="number" class="in-ingreso" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="subtotal-bar">
-                    <span>Subtotal Ingresos</span>
-                    <strong id="subtotal-ingresos">$0</strong>
-                </div>
+                <button class="btn-add" onclick="agregarCampo('grupo-ingresos', 'in-ingreso')">+ Agregar otro ingreso</button>
             </div>
 
-            <!-- SERVICIOS Y VIVIENDA -->
-            <div class="categoria-box">
-                <h2>Servicios y Vivienda</h2>
-                <div class="input-row">
-                    <label>Renta / Hipoteca</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+            <!-- VIVIENDA Y SERVICIOS -->
+            <div class="categoria-box" data-categoria="Vivienda">
+                <h2>Vivienda y Servicios</h2>
+                <div class="inputs-group" id="grupo-vivienda">
+                    <div class="input-row"><label>Renta / Hipoteca</label><input type="number" class="in-gasto" data-cat="Vivienda" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Luz (CFE) / Agua / Gas</label><input type="number" class="in-gasto" data-cat="Vivienda" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Internet / Celular</label><input type="number" class="in-gasto" data-cat="Vivienda" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Mantenimiento</label><input type="number" class="in-gasto" data-cat="Vivienda" placeholder="0" oninput="calcular()"></div>
                 </div>
-                <div class="input-row">
-                    <label>Luz (CFE) / Agua / Gas</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Internet / Celular</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Mantenimiento / Reparaciones</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
+                <button class="btn-add" onclick="agregarCampo('grupo-vivienda', 'in-gasto', 'Vivienda')">+ Agregar concepto</button>
             </div>
 
             <!-- ALIMENTACIÓN Y TRANSPORTE -->
-            <div class="categoria-box">
+            <div class="categoria-box" data-categoria="Alimentación">
                 <h2>Alimentación y Transporte</h2>
-                <div class="input-row">
-                    <label>Súper / Despensa</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+                <div class="inputs-group" id="grupo-alimentacion">
+                    <div class="input-row"><label>Súper / Despensa</label><input type="number" class="in-gasto" data-cat="Alimentación" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Restaurantes / Café</label><input type="number" class="in-gasto" data-cat="Alimentación" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Gasolina / Pasajes</label><input type="number" class="in-gasto" data-cat="Transporte" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Uber / Taxi</label><input type="number" class="in-gasto" data-cat="Transporte" placeholder="0" oninput="calcular()"></div>
                 </div>
-                <div class="input-row">
-                    <label>Restaurantes / Café / Antojos</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Gasolina / Pasajes</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Uber / Taxi</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
+                <button class="btn-add" onclick="agregarCampo('grupo-alimentacion', 'in-gasto', 'Alimentación')">+ Agregar concepto</button>
             </div>
 
             <!-- SALUD Y CUIDADO PERSONAL -->
-            <div class="categoria-box">
-                <h2>Salud y Cuidado Personal</h2>
-                <div class="input-row">
-                    <label>Psicólogo / Terapia / Médico</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+            <div class="categoria-box" data-categoria="Salud">
+                <h2>Salud y Personal</h2>
+                <div class="inputs-group" id="grupo-salud">
+                    <div class="input-row"><label>Psicólogo / Médico</label><input type="number" class="in-gasto" data-cat="Salud" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Gimnasio / Deporte</label><input type="number" class="in-gasto" data-cat="Salud" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Estética / Uñas</label><input type="number" class="in-gasto" data-cat="Personal" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Ropa y Calzado</label><input type="number" class="in-gasto" data-cat="Personal" placeholder="0" oninput="calcular()"></div>
                 </div>
-                <div class="input-row">
-                    <label>Gimnasio / Deporte</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Estética / Uñas / Higiene</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Ropa y Calzado</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
+                <button class="btn-add" onclick="agregarCampo('grupo-salud', 'in-gasto', 'Salud')">+ Agregar concepto</button>
             </div>
 
-            <!-- EDUCACIÓN Y MÁS -->
-            <div class="categoria-box">
-                <h2>Educación, Entretenimiento y Ahorro</h2>
-                <div class="input-row">
-                    <label>Colegiatura / Cursos</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
+            <!-- ESTILO DE VIDA Y AHORRO -->
+            <div class="categoria-box" data-categoria="Ahorro">
+                <h2>Entretenimiento y Ahorro</h2>
+                <div class="inputs-group" id="grupo-ahorro">
+                    <div class="input-row"><label>Salidas / Viajes</label><input type="number" class="in-gasto" data-cat="Entretenimiento" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Mascotas</label><input type="number" class="in-gasto" data-cat="Mascotas" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Ahorro / Inversión</label><input type="number" class="in-gasto" data-cat="Ahorro" placeholder="0" oninput="calcular()"></div>
+                    <div class="input-row"><label>Tandas / Fondo</label><input type="number" class="in-gasto" data-cat="Ahorro" placeholder="0" oninput="calcular()"></div>
                 </div>
-                <div class="input-row">
-                    <label>Salidas / Cine / Viajes</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Mascotas (Alimento/Vet)</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
-                <div class="input-row">
-                    <label>Ahorro / Inversión / Tandas</label>
-                    <input type="number" class="in-gasto" placeholder="0" oninput="calcular()">
-                </div>
+                <button class="btn-add" onclick="agregarCampo('grupo-ahorro', 'in-gasto', 'Ahorro')">+ Agregar concepto</button>
             </div>
+
         </div>
     </div>
 
