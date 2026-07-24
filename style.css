@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: #f5f7ff; /* Fondo azul/morado pastel extremadamente suave */
+    background-color: #f5f7ff; /* Fondo azul/morado pastel suave */
     color: #334155;
     margin: 0;
     padding-bottom: 50px;
@@ -8,7 +8,7 @@ body {
 
 /* ENCABEZADO SUPERIOR */
 .header-profesional {
-    background: linear-gradient(135deg, #a78bfa 0%, #93c5fd 100%); /* Morado pastel a Azul pastel */
+    background: linear-gradient(135deg, #a78bfa 0%, #93c5fd 100%);
     color: white;
     text-align: center;
     padding: 12px;
@@ -33,7 +33,7 @@ body {
 }
 
 h1 {
-    color: #6d28d9; /* Morado medio suave */
+    color: #6d28d9;
     margin-bottom: 4px;
     font-size: 1.8rem;
 }
@@ -96,7 +96,7 @@ h1 {
 }
 
 .balance-card {
-    background: #e0e7ff; /* Azul pastel */
+    background: #e0e7ff;
     border-color: #c7d2fe;
 }
 
@@ -134,14 +134,14 @@ h1 {
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    border-top: 4px solid #a5b4fc; /* Borde Azul Pastel */
+    border-top: 4px solid #a5b4fc;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .ingresos-box {
-    border-top-color: #c4b5fd; /* Borde Morado Pastel */
+    border-top-color: #c4b5fd;
     background: #f5f3ff;
 }
 
@@ -181,7 +181,7 @@ h1 {
     text-align: right;
     font-size: 0.9rem;
     font-weight: 600;
-    color: #6d28d9; /* Texto de los montos en morado */
+    color: #6d28d9;
     outline: none;
 }
 
@@ -202,7 +202,6 @@ h1 {
     color: #ef4444;
 }
 
-/* BOTÓN DE AGREGAR CONCEPTO */
 .btn-add {
     background: none;
     border: 1px dashed #c4b5fd;
@@ -220,7 +219,6 @@ h1 {
     background: #f5f3ff;
 }
 
-/* FOOTER DE CADA TARJETA */
 .card-footer {
     margin-top: 20px;
     padding-top: 12px;
@@ -241,9 +239,8 @@ h1 {
     gap: 8px;
 }
 
-/* PILDORITA DE PORCENTAJE DEL INGRESO */
 .badge-pct {
-    background: #ede9fe; /* Morado pastel claro */
+    background: #ede9fe;
     color: #6d28d9;
     font-size: 0.7rem;
     padding: 3px 8px;
@@ -287,7 +284,7 @@ h1 {
 }
 
 .btn-action-main {
-    background: #a78bfa; /* Morado pastel */
+    background: #a78bfa;
     color: white;
     border: none;
     padding: 12px 22px;
